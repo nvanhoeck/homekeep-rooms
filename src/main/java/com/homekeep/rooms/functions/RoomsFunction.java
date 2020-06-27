@@ -1,6 +1,7 @@
 package com.homekeep.rooms.functions;
 
 import java.util.*;
+import java.util.logging.Level;
 
 import com.homekeep.rooms.dtos.RoomDto;
 import com.microsoft.azure.functions.annotation.*;
@@ -24,7 +25,8 @@ public class RoomsFunction extends AzureSpringBootRequestHandler<Void, List<Room
         try {
             return request.createResponseBuilder(HttpStatus.OK).body(handleRequest(context)).build();
         } catch (Exception e) {
-            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString()).build();
+            context.getLogger().log(Level.ALL, e.toString());
+           throw e;
         }
     }
 }
