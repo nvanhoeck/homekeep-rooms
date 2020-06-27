@@ -153,20 +153,23 @@
 					<resourceGroup>${functionResourceGroup}</resourceGroup>
 					<appName>${functionAppName}</appName>
 					<region>${functionAppRegion}</region>
+					<runtime>
+						<os>linux</os>
+					</runtime>
 					<appSettings>
 						<!-- Run Azure Function from package file by default -->
-						<property>
-							<name>WEBSITE_RUN_FROM_PACKAGE</name>
-							<value>1</value>
-						</property>
+						<!--						<property>-->
+						<!--							<name>WEBSITE_RUN_FROM_PACKAGE</name>-->
+						<!--							<value>1</value>-->
+						<!--						</property>-->
 						<property>
 							<name>FUNCTIONS_EXTENSION_VERSION</name>
-							<value>~2</value>
+							<value>~3</value>
 						</property>
-						<property>
-							<name>FUNCTIONS_WORKER_RUNTIME</name>
-							<value>java</value>
-						</property>
+						<!--						<property>-->
+						<!--							<name>FUNCTIONS_WORKER_RUNTIME</name>-->
+						<!--							<value>java</value>-->
+						<!--						</property>-->
 					</appSettings>
 				</configuration>
 				<executions>
