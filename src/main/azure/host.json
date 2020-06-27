@@ -1,14 +1,4 @@
 {
   "version": "2.0",
-  "functionTimeout": "00:10:00",
-  "logging": {
-    "fileLoggingMode": "debugOnly"
-  },
-  "extensions": {
-    "http": {
-      "routePrefix": "api",
-      "maxConcurrentRequests": 5,
-      "maxOutstandingRequests": 30
-    }
-  }
+  "functionTimeout": "00:10:00"
 }
