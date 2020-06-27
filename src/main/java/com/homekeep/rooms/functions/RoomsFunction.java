@@ -21,6 +21,10 @@ public class RoomsFunction extends AzureSpringBootRequestHandler<Void, List<Room
             @HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
-        return request.createResponseBuilder(HttpStatus.OK).body(handleRequest(context)).build();
+        try {
+            return request.createResponseBuilder(HttpStatus.OK).body(handleRequest(context)).build();
+        } catch (Exception e) {
+            return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString()).build();
+        }
     }
 }
