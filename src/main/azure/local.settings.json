@@ -8,7 +8,6 @@
   },
   "Host": {
     "LocalHttpPort": 7001,
-    "CORS": "*",
-    "CORSCredentials": false
+    "CORS": "*"
   }
 }
