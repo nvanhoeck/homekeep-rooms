@@ -54,7 +54,7 @@ pipeline {
 
             steps {
                 bat "git tag -a ${NEW_VERSION} -m ${NEW_VERSION}"
-                bat "git push heroku"
+                bat "git push origin"
             }
         }
 
@@ -91,7 +91,7 @@ pipeline {
                 bat "git checkout master"
                 bat "git merge develop"
                 bat "git tag -a ${NEW_VERSION} -m ${NEW_VERSION}"
-                bat "mvn azure:deploy"
+                bat "mvn azure-functions:deploy"
             }
         }
     }
