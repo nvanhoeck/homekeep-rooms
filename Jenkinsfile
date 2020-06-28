@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NEW_VERSION = '0.0.5'
+        NEW_VERSION = '0.0.6'
         ORG = 'homekeep'
         APP_NAME = 'homekeep-rooms'
     }
@@ -44,22 +44,13 @@ pipeline {
                 bat "mvn package"
             }
         }
-
-        stage('Deploy to Develop') {
-            when {
-                expression {
-                    BRANCH_NAME == 'develop'
-                }
-            }
-
-            steps {
-                bat "git checkout develop"
-                bat "git tag -a ${NEW_VERSION} -m ${NEW_VERSION}"
-                bat "git push origin/develop"
-            }
-        }
-
         stage('Promote?') {
+         when {
+                        expression {
+                            BRANCH_NAME == 'develop'
+                        }
+                    }
+
         steps {
             script {
                   try {
