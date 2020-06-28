@@ -19,12 +19,12 @@ public class DeleteRoomFunction extends AzureSpringBootRequestHandler<Long, Bool
      */
     @FunctionName("delete-room")
     public HttpResponseMessage run(
-            @HttpTrigger(name = "req", route = "rooms/{id}]", methods = {HttpMethod.DELETE}, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<String>> request,
-            @BindingName("id") Long id,
+            @HttpTrigger(name = "req", route = "rooms/{id:int}", methods = {HttpMethod.DELETE}, authLevel = AuthorizationLevel.FUNCTION) HttpRequestMessage<Optional<String>> request,
+            @BindingName("id") int id,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
         try {
-            return request.createResponseBuilder(HttpStatus.OK).body(handleRequest(id, context)).build();
+            return request.createResponseBuilder(HttpStatus.OK).body(String.valueOf(handleRequest((long) id, context))).build();
         } catch (Exception e) {
             context.getLogger().log(Level.ALL, e.toString());
             return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(e.toString()).build();
