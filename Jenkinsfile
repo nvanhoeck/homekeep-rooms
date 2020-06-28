@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NEW_VERSION = '0.0.4'
+        NEW_VERSION = '0.0.5'
         ORG = 'homekeep'
         APP_NAME = 'homekeep-rooms'
     }
@@ -53,6 +53,7 @@ pipeline {
             }
 
             steps {
+                bat "git checkout develop"
                 bat "git tag -a ${NEW_VERSION} -m ${NEW_VERSION}"
                 bat "git push origin/develop"
             }
@@ -86,8 +87,6 @@ pipeline {
 
             steps {
                 // Get some code from a GitHub repository
-                bat "git checkout develop"
-                bat "git commit -am \"Released version ${NEW_VERSION}\""
                 bat "git checkout master"
                 bat "git merge develop"
                 bat "git push origin/master"
