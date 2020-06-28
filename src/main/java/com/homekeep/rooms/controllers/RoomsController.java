@@ -26,4 +26,16 @@ public class RoomsController {
     public RoomDto getRoom(@PathVariable("id") Long id) {
         return this.roomManager.findById(id);
     }
+
+    public RoomDto addRoom(RoomDto roomDto) {
+        return this.roomManager.addRoom(roomDto);
+    }
+
+    public RoomDto updateRoom(RoomDto roomDto) {
+        return this.roomManager.updateRoom(roomDto);
+    }
+
+    public Boolean deleteRoom(Long id) {
+        return this.roomManager.delete(id);
+    }
 }
