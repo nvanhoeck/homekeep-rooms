@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        NEW_VERSION = '0.0.8'
+        NEW_VERSION = '0.0.9'
         ORG = 'homekeep'
         APP_NAME = 'homekeep-rooms'
     }
@@ -81,7 +81,7 @@ pipeline {
                 bat "git commit -am ${NEW_VERSION}"
                 bat "git tag -a ${NEW_VERSION} -m ${NEW_VERSION}"
                 bat "git merge origin/develop"
-                bat "git push origin/master"
+                bat "git push origin"
                 bat "mvn azure-functions:deploy"
             }
         }
