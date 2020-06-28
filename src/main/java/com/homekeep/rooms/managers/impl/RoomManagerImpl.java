@@ -38,4 +38,19 @@ public class RoomManagerImpl implements RoomManager {
     public RoomDto findById(Long id) {
         return this.roomService.findById(id).map(this.roomMapper::map).orElseThrow(() -> new ResourceNotFoundException(String.format("Could not find resource for id: %d", id)));
     }
+
+    @Override
+    public RoomDto updateRoom(RoomDto roomDto) {
+        return this.roomMapper.map(this.roomService.updateRoom(roomMapper.mapReverse(roomDto)));
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return this.roomService.delete(id);
+    }
+
+    @Override
+    public RoomDto addRoom(RoomDto roomDto) {
+        return this.roomMapper.map(this.roomService.addRoom(roomMapper.mapReverse(roomDto)));
+    }
 }

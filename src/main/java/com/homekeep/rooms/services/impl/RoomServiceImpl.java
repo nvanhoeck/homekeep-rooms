@@ -1,5 +1,6 @@
 package com.homekeep.rooms.services.impl;
 
+import com.homekeep.rooms.dtos.RoomDto;
 import com.homekeep.rooms.entities.RoomEntity;
 import com.homekeep.rooms.repositories.RoomRepository;
 import com.homekeep.rooms.services.RoomService;
@@ -25,5 +26,21 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public Optional<RoomEntity> findById(Long id) {
         return this.roomRepository.findById(id);
+    }
+
+    @Override
+    public RoomEntity updateRoom(RoomEntity roomEntity) {
+        return this.roomRepository.saveAndFlush(roomEntity);
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        this.roomRepository.deleteById(id);
+        return !this.roomRepository.findById(id).isPresent();
+    }
+
+    @Override
+    public RoomEntity addRoom(RoomEntity roomEntity) {
+        return this.roomRepository.saveAndFlush(roomEntity);
     }
 }

@@ -1,5 +1,6 @@
 package com.homekeep;
 
+import com.homekeep.rooms.dtos.RoomDto;
 import com.homekeep.rooms.entities.RoomEntity;
 
 public class SampleDataUtil {
@@ -19,4 +20,18 @@ public class SampleDataUtil {
         return roomEntity;
     }
 
+    public static RoomDto buildRoomDto(String name) {
+        RoomDto roomDto = new RoomDto();
+        roomDto.setName(name);
+        roomDto.setIcon("icon");
+        return roomDto;
+    }
+
+    public static RoomDto buildRoomDto(long id, String name) {
+        RoomDto roomDto = new RoomDto();
+        roomDto.setName(name);
+        roomDto.setId(id);
+        roomDto.setIcon("icon");
+        return roomDto;
+    }
 }
