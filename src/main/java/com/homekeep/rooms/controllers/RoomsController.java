@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -19,7 +20,7 @@ public class RoomsController {
         this.roomManager = roomManager;
     }
 
-    public List<RoomDto> getRooms() {
+    public List<RoomDto> getRooms(Optional<?> empty) {
         return this.roomManager.findAll();
     }
 
