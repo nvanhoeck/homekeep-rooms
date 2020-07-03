@@ -13,6 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,7 +33,7 @@ public class RoomsControllerIT {
     @Test
     public void whenFindAll_ReturnsRoomsDtos() {
         RoomEntity storedRoom = this.roomRepository.saveAndFlush(SampleDataUtil.buildRoomEntity("Testroom"));
-        List<RoomDto> roomDtos = roomsController.getRooms();
+        List<RoomDto> roomDtos = roomsController.getRooms(Optional.empty());
         assertThat(roomDtos).extracting("id", "name").contains(Tuple.tuple(storedRoom.getId(), "Testroom"));
     }
 
